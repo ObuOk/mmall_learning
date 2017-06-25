@@ -21,4 +21,14 @@ public interface UserMapper {
     int checkEmail(String eMail);
 
     User selectLogin(@Param("username") String username, @Param("password") String password);
+
+    String selectQuestion(String username);
+
+    int checkAnswer(@Param("username")String username, @Param("question")String question,@Param("answer")String answer);
+
+    int updatePasswordByUserName(@Param("username") String username, @Param("passWordNew") String passWordNew);
+
+    int checkPassword(@Param(value = "password")String password, @Param(value = "id")Integer id);
+
+    int checkEmailByUserId(@Param(value = "email") String email, @Param(value = "id") Integer id);
 }
