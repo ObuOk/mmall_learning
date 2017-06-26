@@ -55,7 +55,7 @@ import java.util.UUID;
         if (!validResponse.isSuccess()) {
             return validResponse;
         }
-        user.setRole(Const.Role.ROLE_CUSTOMER);
+        user.setRole(Const.Role.ROLE_ADMIN);
 
         user.setPassword(MD5Util.MD5EncodeUtf8(user.getPassword()));
         int insert = userMapper.insert(user);

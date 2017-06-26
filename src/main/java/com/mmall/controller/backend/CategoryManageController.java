@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  */
 
 @Controller
-@RequestMapping("manage/category")
+    @RequestMapping("/manage/category")
 public class CategoryManageController {
 
     @Autowired
@@ -58,6 +58,38 @@ public class CategoryManageController {
 
         }else {
             return ServerResponse.createByErrorMessage("更新失败，用户必须是管理员才可以更新品类");
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping("/getChildParallelCategory.do")
+    public ServerResponse getChildrenParallelCategory(HttpSession session, @RequestParam(value = "categoryId",defaultValue = "0") Integer categoryId) {
+        User user = (User) session.getAttribute(Const.CURRENT_USER);
+        if (user == null) {
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"用户未登录");
+        }
+        if (iUserService.checkAdminByRole(user).isSuccess()) {
+
+            return iCategoryService.selectCategoryById(categoryId);
+
+        }else {
+            return ServerResponse.createByErrorMessage("查询失败，用户必须是管理员才可以查询品类");
+        }
+    }
+    @ResponseBody
+    @RequestMapping("/getChildrenDeepCategory.do")
+    public ServerResponse getChildrenDeepCategory(HttpSession session, @RequestParam(value = "categoryId",defaultValue = "0") Integer categoryId) {
+
+        User user = (User) session.getAttribute(Const.CURRENT_USER);
+        if (user == null) {
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"用户未登录");
+        }
+        if (iUserService.checkAdminByRole(user).isSuccess()) {
+
+            return iCategoryService.selectCategoryAndChildrenById(categoryId);
+
+        }else {
+            return ServerResponse.createByErrorMessage("查询失败，用户必须是管理员才可以查询品类");
         }
     }
 
