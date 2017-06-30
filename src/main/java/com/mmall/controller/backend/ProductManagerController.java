@@ -114,7 +114,7 @@ public class ProductManagerController {
 
     @ResponseBody
     @RequestMapping("/searchProduct.do")
-    public ServerResponse<PageInfo> searchProduct(HttpSession session,String productName, String productId, @RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize",defaultValue = "10")Integer pageSize) {
+    public ServerResponse<PageInfo> searchProduct(HttpSession session,String productName, Integer productId, @RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize",defaultValue = "10")Integer pageSize) {
         User user = (User) session.getAttribute(Const.CURRENT_USER);
         if (user == null) {
             return ServerResponse.createByErrorMessage("用户未登录");

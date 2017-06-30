@@ -4,6 +4,7 @@ import com.mmall.common.ServerResponse;
 import com.mmall.pojo.Category;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -16,7 +17,7 @@ public interface ICategoryService {
 
     ServerResponse updateCategoryName(String categoryName, Integer categoryId);
 
-    ServerResponse selectCategoryAndChildrenById(Integer categoryId);
+    ServerResponse<List<Integer>> selectCategoryAndChildrenById(Integer categoryId);
 
     Set<Category> findChildCategory(Set<Category> categories, Integer categoryId);
 
