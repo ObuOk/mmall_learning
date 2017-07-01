@@ -72,7 +72,6 @@ public class FTPUtil {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
         }else {
             try {
