@@ -216,4 +216,20 @@
 
   </select>
 
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT <include refid="Base_Column_List"/>
+    FROM mmall_order
+    WHERE user_id=#{userId}
+    order by create_time desc
+
+  </select>
+
+  <select id="selectAllOrder" resultMap="BaseResultMap">
+
+    SELECT <include refid="Base_Column_List"/>
+    FROM mmall_order
+    ORDER BY create_time DESC
+
+  </select>
+
 </mapper>

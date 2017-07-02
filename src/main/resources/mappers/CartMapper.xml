@@ -128,7 +128,7 @@
     from mmall_cart
     where checked = 0 AND user_id = #{userId}
   </select>
-  <select id="selectCartByuserIdAndpro  ductId" resultMap="BaseResultMap" parameterType="java.util.Map" >
+  <select id="selectCartByuserIdAndproductId" resultMap="BaseResultMap" parameterType="java.util.Map" >
     select
     <include refid="Base_Column_List" />
     from mmall_cart
@@ -163,6 +163,14 @@
     SELECT IFNULL(sum(quantity),0) AS COUNT FROM mmall_cart WHERE user_id = #{userId}
 
 
+  </select>
+  
+  
+  <select id="selectCheckByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT <include refid="Base_Column_List"/>
+    FROM mmall_cart
+    WHERE user_id = #{userId}
+    AND checked = 1
   </select>
 
 
